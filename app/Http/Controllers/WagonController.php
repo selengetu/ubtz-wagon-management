@@ -14,17 +14,16 @@ class WagonController extends Controller {
     public function index()
     {
         $id=Auth::user()->id;
-        $cat= DB::select("select * from CATEGORIES t");
+        $categories= DB::select("select * from CATEGORIES t");
         $companies= DB::select("select * from COMPANIES t");
         $contract_type= DB::select("select * from CONTRACT_TYPES t");
         $countries= DB::select("select * from CONTRIES t");
         $factories= DB::select("select * from FACTORIES t");
         $models= DB::select("select * from MODELS t");
         $railways= DB::select("select * from RAILWAYS t");
-        $models= DB::select("select * from MODELS t");
         $wagon_depos= DB::select("select * from WAGON_DEPOS t");
         $wagons= DB::select("select * from WAGONS t");
-        return view('const.wagon',compact('cat','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
+        return view('home', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
     public function save(Request $request)
     {
