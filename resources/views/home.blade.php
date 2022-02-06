@@ -24,7 +24,7 @@
             <div class="card-header">
                 <h3 class="card-title">Вагоны мэдээлэл</h3>
                 <div class="card-tools">
-                    <button class="btn btn-default btn-small right"  onclick="depEdit()" data-toggle="modal" data-target="#depModal"><i class="fa fa-plus"></i> Вагон нэмэх</button>
+                    <button class="btn btn-default btn-small right"  onclick="" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button>
                 </div>
             </div>
             <div class="card-body">
@@ -53,11 +53,11 @@
     </div>
 </div>
         <!-- Modal -->
-        <div class="modal fade" id="depModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal fade" id="wagonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Вагон бүртгэл</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -65,32 +65,77 @@
                 <form method="POST" id="formSub" action=''>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="jobname">Харьяа байгууллага</label>
+                                <label for="jobname">Төрөл</label>
                                 <select class="form-control" name="p_abbr" id="p_abbr" >
-                              
+                                @foreach ($categories as $item)
+                                        <option value="{{ $item->catcode }}">{{ $item->abbr }}</option>
+                                    @endforeach
                             </select>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="jobname">Байгууллагын нэр</label>
-                                <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Товч тушаал">
+                                <label for="jobname">Компани</label>
+                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                @foreach ($companies as $item)
+                                        <option value="{{ $item->company_id }}">{{ $item->main_station_name }}</option>
+                                    @endforeach
+                            </select>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="jobname">Товч нэр</label>
-                                <input type="text" class="form-control" id="department_abbr" name="department_abbr" placeholder="Товч тушаал">
+                                <label for="jobname">Орон</label>
+                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                @foreach ($countries as $item)
+                                        <option value="{{ $item->country_code }}">{{ $item->contry_name }}</option>
+                                    @endforeach
+                            </select>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="jobname">Баланс код</label>
-                                <input type="text" class="form-control" id="balance_code" name="balance_code" placeholder="Товч тушаал">
+                                <label for="jobname">Үйлдвэрлэгч</label>
+                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                @foreach ($factories as $item)
+                                        <option value="{{ $item->factory_code }}">{{ $item->factory_name }}</option>
+                                    @endforeach
+                                    </select>
                             </div>
                         </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="jobname">Загвар</label>
+                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                @foreach ($models as $item)
+                                        <option value="{{ $item->model_id }}">{{ $item->model_name }}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="jobname">Төмөр зам</label>
+                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                @foreach ($railways as $item)
+                                        <option value="{{ $item->rcode }}">{{ $item->rabbr }}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="jobname">Вагон депо</label>
+                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                @foreach ($wagon_depos as $item)
+                                        <option value="{{ $item->depo_id }}">{{ $item->depo_name }}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
                 <div class="modal-footer">
