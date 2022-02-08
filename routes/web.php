@@ -34,4 +34,10 @@ Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'
 Route::get('/home', [App\Http\Controllers\WagonController::class, 'index'])->name('home');
 
 Route::post('/passw',  [App\Http\Controllers\HomeController::class,'passw'])->name('passw');
-
+Route::get('/wagon/delete/{id}', [App\Http\Controllers\WagonController::class,'delete']);
+Route::post('/savewagon',[App\Http\Controllers\WagonController::class,'savewagon'])->name('savewagon');
+Route::post('/updatewagon','WagonController@update');
+Route::get('/wagonfill/{id?}',function($id = 0){
+    $dt=App\Wagon::where('wag_id','=',$id)->get();
+    return $dt;
+});

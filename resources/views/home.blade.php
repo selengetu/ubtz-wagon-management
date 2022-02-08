@@ -62,79 +62,270 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" id="formSub" action=''>
+                <form method="POST" id="formSub" action='savewagon'>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="jobname">Төрөл</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                                @foreach ($categories as $item)
-                                        <option value="{{ $item->catcode }}">{{ $item->abbr }}</option>
-                                    @endforeach
-                            </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="jobname">Компани</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                                @foreach ($companies as $item)
-                                        <option value="{{ $item->company_id }}">{{ $item->main_station_name }}</option>
-                                    @endforeach
-                            </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="jobname">Орон</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                                @foreach ($countries as $item)
-                                        <option value="{{ $item->country_code }}">{{ $item->contry_name }}</option>
-                                    @endforeach
-                            </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="jobname">Үйлдвэрлэгч</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                                @foreach ($factories as $item)
-                                        <option value="{{ $item->factory_code }}">{{ $item->factory_name }}</option>
-                                    @endforeach
-                                    </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="jobname">Загвар</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                                @foreach ($models as $item)
-                                        <option value="{{ $item->model_id }}">{{ $item->model_name }}</option>
-                                    @endforeach
-                                    </select>
-                            </div>
-                        </div>
-                        <div class="col-6">
+                    <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Төмөр зам</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
+                                <select class="form-control" name="rcode" id="rcode" >
                                 @foreach ($railways as $item)
                                         <option value="{{ $item->rcode }}">{{ $item->rabbr }}</option>
                                     @endforeach
                                     </select>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">Вагон депо</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                                @foreach ($wagon_depos as $item)
-                                        <option value="{{ $item->depo_id }}">{{ $item->depo_name }}</option>
+                                <label for="jobname">Вагон дугаар</label>
+                                <input type="text" class="form-control" id="wagno" name="wagno" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Загвар</label>
+                                <select class="form-control" name="model_id" id="model_id" >
+                                @foreach ($models as $item)
+                                        <option value="{{ $item->model_id }}">{{ $item->model_name }}</option>
                                     @endforeach
                                     </select>
                             </div>
                         </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Төрөл</label>
+                                <select class="form-control" name="catcode" id="catcode" >
+                                @foreach ($categories as $item)
+                                        <option value="{{ $item->catcode }}">{{ $item->abbr }}</option>
+                                    @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Үйлдвэрлэгч</label>
+                                <select class="form-control" name="factory_code" id="factory_code" >
+                                @foreach ($factories as $item)
+                                        <option value="{{ $item->factory_code }}">{{ $item->factory_name }}</option>
+                                    @endforeach
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Үйлдвэрлэсэн он</label>
+                                <input type="text" class="form-control" id="factory_date" name="factory_date" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Голын тоо</label>
+                                <input type="text" class="form-control" id="axes" name="axes" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Голын даац</label>
+                                <input type="text" class="form-control" id="axe_capacity" name="axe_capacity" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Бохир жин</label>
+                                <input type="text" class="form-control" id="brutto" name="brutto" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Цэвэр жин</label>
+                                <input type="text" class="form-control" id="netto" name="netto" >
+                            </div>
+                        </div>
+                         <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Баазын урт</label>
+                                <input type="text" class="form-control" id="base_length" name="base_length" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Тэнхлэгийн урт</label>
+                                <input type="text" class="form-control" id="ram_length" name="ram_length" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Х/б овор</label>
+                                <input type="text" class="form-control" id="carrying_capacity" name="carrying_capacity" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Ачааны даац</label>
+                                <input type="text" class="form-control" id="tare_weight" name="tare_weight" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Эзэлхүүн</label>
+                                <input type="text" class="form-control" id="volume" name="volume" >
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Length_outer</label>
+                                <input type="text" class="form-control" id="length_outer" name="length_outer" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Width_outer</label>
+                                <input type="text" class="form-control" id="width_outer" name="width_outer" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Height_outer</label>
+                                <input type="text" class="form-control" id="height_outer" name="height_outer" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Length_inner </label>
+                                <input type="text" class="form-control" id="length_inner" name="length_inner" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Width_inner</label>
+                                <input type="text" class="form-control" id="width_inner" name="width_inner" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Height_inner</label>
+                                <input type="text" class="form-control" id="heigth_inner" name="heigth_inner" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Хаалга</label>
+                                <input type="text" class="form-control" id="door" name="door" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">number_of_hatches</label>
+                                <input type="text" class="form-control" id="number_of_hatches" name="number_of_hatches" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">side_hatches</label>
+                                <input type="text" class="form-control" id="side_hatches" name="side_hatches" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">roof_hatches</label>
+                                <input type="text" class="form-control" id="roof_hatches" name="roof_hatches" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Шал</label>
+                                <input type="text" class="form-control" id="floor_area" name="floor_area" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">number_of_side_boards</label>
+                                <input type="text" class="form-control" id="number_of_side_boards" name="number_of_side_boards" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">number_of_side_rack_brackets</label>
+                                <input type="text" class="form-control" id="number_of_side_rack_brackets" name="number_of_side_rack_brackets" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">purposed_cargoes</label>
+                                <input type="text" class="form-control" id="purposed_cargoes" name="purposed_cargoes" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">load_hatch</label>
+                                <input type="text" class="form-control" id="load_hatch" name="load_hatch" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">unload_hatch</label>
+                                <input type="text" class="form-control" id="unload_hatch" name="unload_hatch" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Дамжих тавцан</label>
+                                <input type="text" class="form-control" id="transfer_panel" name="transfer_panel" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Гар тоормос</label>
+                                <input type="text" class="form-control" id="hand_stop" name="hand_stop" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Тоормосын төрөл</label>
+                                <input type="text" class="form-control" id="stop_type" name="stop_type" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Автоугсраа</label>
+                                <input type="text" class="form-control" id="auto_hook_type" name="auto_hook_type" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Автодэглэм</label>
+                                <input type="text" class="form-control" id="auto_trigger_type" name="auto_trigger_type" >
+                            </div>
+                        </div>
+                       
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Ш/аппарат ангилал</label>
+                                <input type="text" class="form-control" id="absorption_type" name="absorption_type" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Төрөл</label>
+                                <input type="text" class="form-control" id="absorption_category" name="absorption_category" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Баталгаа</label>
+                                <input type="text" class="form-control" id="absorption_date" name="absorption_date" >
+                            </div>
+                        </div>
+
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">ВУ-4М маягт</label>
+                                <input type="text" class="form-control" id="ram_length" name="ram_length" >
+                            </div>
+                        </div>
+
+                       
                        
                     </div>
                 </div>

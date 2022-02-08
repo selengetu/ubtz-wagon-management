@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use App\Models\Wagon;
 class WagonController extends Controller {
 
     public function __construct() {
@@ -25,9 +26,52 @@ class WagonController extends Controller {
         $wagons= DB::select("select * from WAGONS t");
         return view('home', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
-    public function save(Request $request)
+    public function savewagon(Request $request)
     {
-      
+        $wag = new Wagon;
+        $wag->rcode = $request->rcode;
+        $wag->wagno = $request->wagno;
+        $wag->model_id = $request->model_id;
+        $wag->model_no = $request->model_no;
+        $wag->catcode = $request->catcode;
+        $wag->factory_code ='1';
+     
+        $wag->axes = $request->axes;
+        $wag->axe_capacity = $request->axe_capacity;
+        $wag->brutto = $request->brutto;
+        $wag->netto = $request->netto;
+        $wag->base_length = $request->base_length;
+        $wag->ram_length = $request->ram_length;
+        $wag->carrying_capacity = $request->carrying_capacity;
+        $wag->tare_weight = $request->tare_weight;
+        $wag->volume = $request->volume;
+        $wag->length_outer = $request->length_outer;
+        $wag->width_outer = $request->width_outer;
+
+        $wag->width_inner = $request->width_inner;
+
+        $wag->length_inner = $request->length_inner;
+        $wag->door = $request->door;
+        $wag->number_of_hatches = $request->number_of_hatches;
+        $wag->side_hatches = $request->side_hatches;
+        $wag->roof_hatches = $request->roof_hatches;
+        $wag->floor_area = $request->floor_area;
+        $wag->number_of_side_boards = '2';
+        $wag->number_of_side_rack_brackets = '2';
+        $wag->purposed_cargoes = $request->purposed_cargoes;
+        $wag->load_hatch = $request->load_hatch;
+        $wag->unload_hatch = $request->unload_hatch;
+        $wag->transfer_panel = $request->rcode;
+        $wag->hand_stop = $request->hand_stop;
+        $wag->stop_type = $request->stop_type;
+        $wag->auto_hook_type = $request->auto_hook_type;
+        $wag->auto_trigger_type = $request->auto_trigger_type;
+        $wag->absorption_type = $request->absorption_type;
+        $wag->absorption_category = $request->absorption_category;
+
+        $wag->vu4m_wagon_techinfo = $request->vu4m_wagon_techinfo;
+        $wag->save();
+        return Redirect('home');
     }
     public function getDep($hid)
     {
