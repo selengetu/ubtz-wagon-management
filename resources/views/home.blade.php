@@ -43,7 +43,24 @@
                         </thead>
                         <tbody id="tbody">
                         <?php $no = 1; ?>
-                       
+                        @foreach ($wagons as $item )
+                        <tr>
+                            <td>{{$no}}</td>
+                            <td>{{$item->rcode}}</td>
+                            <td>{{$item->wag_no}}</td>
+                            <td>{{$item->model}}</td>
+                            <td>{{$item->category}}</td>
+                            <td>{{$item->usr_name}}</td>
+                            @if((Auth::user()->userlevel<>4) )
+                        <td>
+                            <button class='btn btn-primary btn-xs' onclick=depEdit('{{$item->depid}}') data-toggle='modal' data-target='#depModal' title='Засах'><i class='fa fa-edit'></i></button> 
+                            <button class='btn btn-primary btn-xs' onclick="depDel('{{$item->depid}}','{{$item->department_name}}')" data-toggle='modal' title='Устгах'><i class='fa fa-trash-alt'></i></button>
+                        </td>
+                        @endif
+                        </tr>
+                        <?php $no++; ?>
+
+                        @endforeach
                         
                         </tbody>
                     </table>
