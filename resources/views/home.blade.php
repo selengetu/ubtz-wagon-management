@@ -100,13 +100,13 @@
     <p><b>Ачааны даац: </b><span id="d_tare_weight"></span></p>
     <p><b>Эзэлхүүн: </b><span id="d_volume"></span></p>
     <p><b>Хаалга: </b><span id="d_door"></span></p>
-    
-    </div>
-    <div class="col-md-6">
-    <br><br>
     <p><b>Нээлхийний тоо: </b><span id="d_number_of_hatches"></span></p>
     <p><b>Хажуугийн нээлхий: </b><span id="d_side_hatches"></span></p>
     <p><b>Дээврийн нээлхий: </b><span id="d_roof_hatches"></span></p>
+    </div>
+    <div class="col-md-6">
+    <br><br>
+   
     <p><b>Шал: </b><span id="d_floor_area"></span></p>
     <p><b>Хажуугийн тэвш: </b><span id="d_number_of_side_boards"></span></p>
     <p><b>Бэхэлгээний тоо: </b><span id="d_number_of_side_rack_brackets"></span></p>
@@ -119,6 +119,9 @@
     <p><b>Автоугсраа: </b><span id="d_auto_hook_type"></span></p>
     <p><b>Автодэглэм: </b><span id="d_auto_trigger_type"></span></p>
     <p><b>ВУ-4М маягт: </b><span id="vu4m_wagon_techinfo"></span></p>
+    <p><b>Шингээх аппаратны ангилал: </b><span id="d_absorption_type"></span></p>
+    <p><b>Шингээх аппаратны төрөл: </b><span id="d_absorption_category"></span></p>
+    <p><b>Шингээх аппаратны баталгаа: </b><span id="d_absorption_date"></span></p>
     <button class="btn btn-default btn-small right"  id="editbutton" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-pencil"></i> Вагон засварлах</button>
     </div>
     </div>
@@ -164,6 +167,7 @@
                                 <label for="jobname">Вагон дугаар</label>
                                 <input type="text" class="form-control" id="wagno" name="wagno" require>
                                 <input type="hidden" class="form-control" id="type" name="type">
+                                <input type="hidden" class="form-control" id="wag_id" name="wag_id">
                             </div>
                         </div>
                         <div class="col-3">
@@ -422,10 +426,11 @@ $('.wagondetail').on('click',function(){
 
              $.each(data,function(i,qwe){
 
-                    $('#d_rcode').text(qwe.rcode);
+               
+                    $('#d_rcode').text(qwe.rabbr);
                     $('#d_wagno').text(qwe.wagno);
-                    $('#d_model_id').text(qwe.model_id);
-                    $('#d_catcode').text(qwe.catcode);
+                    $('#d_model_id').text(qwe.model_name);
+                    $('#d_catcode').text(qwe.category_name);
                     $('#d_factory_code').text(qwe.f_name);
                     $('#d_factory_date').text(qwe.factory_date);
                     $('#d_axes').text(qwe.axes);
@@ -456,11 +461,13 @@ $('.wagondetail').on('click',function(){
                     $('#d_absorption_category').text(qwe.absorption_category);
                     $('#d_absorption_date').text(qwe.absorption_date);
 
+
+                    $('#wag_id').val(qwe.wag_id);
                     $('#rcode').val(qwe.rcode);
                     $('#wagno').val(qwe.wagno);
                     $('#model_id').val(qwe.model_id);
                     $('#catcode').val(qwe.catcode);
-                    $('#factory_code').val(qwe.f_name);
+                    $('#factory_code').val(qwe.factory_code);
                     $('#factory_date').val(qwe.factory_date);
                     $('#axes').val(qwe.axes);
                     $('#axe_capacity').val(qwe.axe_capacity);
