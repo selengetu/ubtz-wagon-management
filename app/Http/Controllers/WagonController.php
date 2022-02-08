@@ -18,7 +18,7 @@ class WagonController extends Controller {
         $categories= DB::select("select * from CATEGORIES t");
         $companies= DB::select("select * from COMPANIES t");
         $contract_type= DB::select("select * from CONTRACT_TYPES t");
-        $countries= DB::select("select * from CONTRIES t");
+        $countries= DB::select("select * from COUNTRIES t");
         $factories= DB::select("select * from FACTORIES t");
         $models= DB::select("select * from MODELS t");
         $railways= DB::select("select * from RAILWAYS t");
@@ -56,8 +56,8 @@ class WagonController extends Controller {
         $wag->side_hatches = $request->side_hatches;
         $wag->roof_hatches = $request->roof_hatches;
         $wag->floor_area = $request->floor_area;
-        $wag->number_of_side_boards = '2';
-        $wag->number_of_side_rack_brackets = '2';
+        $wag->number_of_side_boards = $request->number_of_side_boards;
+        $wag->number_of_side_rack_brackets = $request->number_of_side_rack_brackets;
         $wag->purposed_cargoes = $request->purposed_cargoes;
         $wag->load_hatch = $request->load_hatch;
         $wag->unload_hatch = $request->unload_hatch;
