@@ -37,9 +37,12 @@
                             <th>Загвар</th>
                             <th>Ангилал</th>
                             <th>Үйлдвэрлэгч</th>
-                            <th>Загвар</th>
-                            <th>Ангилал</th>
-                            <th>Үйлдвэрлэгч</th>
+                            <th>Баазын урт</th>
+                            <th>Голын тоо</th>
+                            <th>Голын Даац</th>
+                            <th>Цэвэр жин</th>
+                            <th>Бохир жин</th>
+                            <th>Эзэлхүүн</th>
                         </thead>
                         <tbody id="tbody">
                         <?php $no = 1; ?>
@@ -47,16 +50,16 @@
                         <tr>
                             <td>{{$no}}</td>
                             <td>{{$item->rcode}}</td>
-                            <td>{{$item->wag_no}}</td>
-                            <td>{{$item->model}}</td>
-                            <td>{{$item->category}}</td>
-                            <td>{{$item->usr_name}}</td>
-                            @if((Auth::user()->userlevel<>4) )
-                        <td>
-                            <button class='btn btn-primary btn-xs' onclick=depEdit('{{$item->depid}}') data-toggle='modal' data-target='#depModal' title='Засах'><i class='fa fa-edit'></i></button> 
-                            <button class='btn btn-primary btn-xs' onclick="depDel('{{$item->depid}}','{{$item->department_name}}')" data-toggle='modal' title='Устгах'><i class='fa fa-trash-alt'></i></button>
-                        </td>
-                        @endif
+                            <td>{{$item->wagno}}</td>
+                            <td>{{$item->model_name}}</td>
+                            <td>{{$item->category_name}}</td>
+                            <td>{{$item->factory_name}}</td>
+                            <td>{{$item->base_length}}</td>
+                            <td>{{$item->axes}}</td>
+                            <td>{{$item->axe_capacity}}</td>
+                            <td>{{$item->netto}}</td>
+                            <td>{{$item->brutto}}</td>
+                            <td>{{$item->volume}}</td>
                         </tr>
                         <?php $no++; ?>
 
@@ -95,7 +98,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Вагон дугаар</label>
-                                <input type="text" class="form-control" id="wagno" name="wagno" >
+                                <input type="text" class="form-control" id="wagno" name="wagno" require>
                             </div>
                         </div>
                         <div class="col-3">
@@ -131,170 +134,133 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Үйлдвэрлэсэн он</label>
-                                <input type="text" class="form-control" id="factory_date" name="factory_date" >
+                                <input type="date" class="form-control" id="factory_date" name="factory_date" require>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Голын тоо</label>
-                                <input type="text" class="form-control" id="axes" name="axes" >
+                                <input type="number" class="form-control" id="axes" name="axes" require>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Голын даац</label>
-                                <input type="text" class="form-control" id="axe_capacity" name="axe_capacity" >
+                                <input type="number" class="form-control" id="axe_capacity" name="axe_capacity" require>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Бохир жин</label>
-                                <input type="text" class="form-control" id="brutto" name="brutto" >
+                                <input type="number" class="form-control" id="brutto" name="brutto" require>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Цэвэр жин</label>
-                                <input type="text" class="form-control" id="netto" name="netto" >
+                                <input type="number" class="form-control" id="netto" name="netto" require>
                             </div>
                         </div>
                          <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Баазын урт</label>
-                                <input type="text" class="form-control" id="base_length" name="base_length" >
+                                <input type="number" class="form-control" id="base_length" name="base_length" require>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Тэнхлэгийн урт</label>
-                                <input type="text" class="form-control" id="ram_length" name="ram_length" >
+                                <input type="number" class="form-control" id="ram_length" name="ram_length" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Х/б овор</label>
-                                <input type="text" class="form-control" id="carrying_capacity" name="carrying_capacity" >
+                                <input type="number" class="form-control" id="carrying_capacity" name="carrying_capacity" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Ачааны даац</label>
-                                <input type="text" class="form-control" id="tare_weight" name="tare_weight" >
+                                <input type="number" class="form-control" id="tare_weight" name="tare_weight" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Эзэлхүүн</label>
-                                <input type="text" class="form-control" id="volume" name="volume" >
-                            </div>
-                        </div>
-
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="jobname">Length_outer</label>
-                                <input type="text" class="form-control" id="length_outer" name="length_outer" >
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="jobname">Width_outer</label>
-                                <input type="text" class="form-control" id="width_outer" name="width_outer" >
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="jobname">Height_outer</label>
-                                <input type="text" class="form-control" id="height_outer" name="height_outer" >
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="jobname">Length_inner </label>
-                                <input type="text" class="form-control" id="length_inner" name="length_inner" >
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="jobname">Width_inner</label>
-                                <input type="text" class="form-control" id="width_inner" name="width_inner" >
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label for="jobname">Height_inner</label>
-                                <input type="text" class="form-control" id="heigth_inner" name="heigth_inner" >
+                                <input type="number" class="form-control" id="volume" name="volume" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Хаалга</label>
-                                <input type="text" class="form-control" id="door" name="door" >
+                                <input type="number" class="form-control" id="door" name="door" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">number_of_hatches</label>
-                                <input type="text" class="form-control" id="number_of_hatches" name="number_of_hatches" >
+                                <label for="jobname">Нээлхийний тоо</label>
+                                <input type="number" class="form-control" id="number_of_hatches" name="number_of_hatches" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">side_hatches</label>
-                                <input type="text" class="form-control" id="side_hatches" name="side_hatches" >
+                                <label for="jobname">Хажуугийн нээлхий</label>
+                                <input type="number" class="form-control" id="side_hatches" name="side_hatches" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">roof_hatches</label>
-                                <input type="text" class="form-control" id="roof_hatches" name="roof_hatches" >
+                                <label for="jobname">Дээврийн нээлхий</label>
+                                <input type="number" class="form-control" id="roof_hatches" name="roof_hatches" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Шал</label>
-                                <input type="text" class="form-control" id="floor_area" name="floor_area" >
+                                <input type="number" class="form-control" id="floor_area" name="floor_area" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">number_of_side_boards</label>
-                                <input type="text" class="form-control" id="number_of_side_boards" name="number_of_side_boards" >
+                                <label for="jobname">Хажуугийн тэвш</label>
+                                <input type="number" class="form-control" id="number_of_side_boards" name="number_of_side_boards" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">number_of_side_rack_brackets</label>
-                                <input type="text" class="form-control" id="number_of_side_rack_brackets" name="number_of_side_rack_brackets" >
+                                <label for="jobname">Бэхэлгээний тоо</label>
+                                <input type="number" class="form-control" id="number_of_side_rack_brackets" name="number_of_side_rack_brackets" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">purposed_cargoes</label>
+                                <label for="jobname">Ачааны онцлог</label>
                                 <input type="text" class="form-control" id="purposed_cargoes" name="purposed_cargoes" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">load_hatch</label>
-                                <input type="text" class="form-control" id="load_hatch" name="load_hatch" >
+                                <label for="jobname">Ачих нээлхий</label>
+                                <input type="number" class="form-control" id="load_hatch" name="load_hatch" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="jobname">unload_hatch</label>
-                                <input type="text" class="form-control" id="unload_hatch" name="unload_hatch" >
+                                <label for="jobname">Буулгах нээлхий</label>
+                                <input type="number" class="form-control" id="unload_hatch" name="unload_hatch" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Дамжих тавцан</label>
-                                <input type="text" class="form-control" id="transfer_panel" name="transfer_panel" >
+                                <input type="number" class="form-control" id="transfer_panel" name="transfer_panel" >
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Гар тоормос</label>
-                                <input type="text" class="form-control" id="hand_stop" name="hand_stop" >
+                                <input type="number" class="form-control" id="hand_stop" name="hand_stop" >
                             </div>
                         </div>
                         <div class="col-3">

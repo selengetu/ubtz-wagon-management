@@ -23,7 +23,7 @@ class WagonController extends Controller {
         $models= DB::select("select * from MODELS t");
         $railways= DB::select("select * from RAILWAYS t");
         $wagon_depos= DB::select("select * from WAGON_DEPOS t");
-        $wagons= DB::select("select * from WAGONS t");
+        $wagons= DB::select("select * from V_WAGONS t");
         return view('home', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
     public function savewagon(Request $request)
