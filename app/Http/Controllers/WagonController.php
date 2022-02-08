@@ -45,12 +45,6 @@ class WagonController extends Controller {
         $wag->carrying_capacity = $request->carrying_capacity;
         $wag->tare_weight = $request->tare_weight;
         $wag->volume = $request->volume;
-        $wag->length_outer = $request->length_outer;
-        $wag->width_outer = $request->width_outer;
-
-        $wag->width_inner = $request->width_inner;
-
-        $wag->length_inner = $request->length_inner;
         $wag->door = $request->door;
         $wag->number_of_hatches = $request->number_of_hatches;
         $wag->side_hatches = $request->side_hatches;
@@ -68,7 +62,7 @@ class WagonController extends Controller {
         $wag->auto_trigger_type = $request->auto_trigger_type;
         $wag->absorption_type = $request->absorption_type;
         $wag->absorption_category = $request->absorption_category;
-
+        $wag->absorption_date = $request->absorption_date;
         $wag->vu4m_wagon_techinfo = $request->vu4m_wagon_techinfo;
         $wag->save();
         return Redirect('home');

@@ -37,7 +37,7 @@ Route::post('/passw',  [App\Http\Controllers\HomeController::class,'passw'])->na
 Route::get('/wagon/delete/{id}', [App\Http\Controllers\WagonController::class,'delete']);
 Route::post('/savewagon',[App\Http\Controllers\WagonController::class,'savewagon'])->name('savewagon');
 Route::post('/updatewagon','WagonController@update');
-Route::get('/wagonfill/{id?}',function($id = 0){
-    $dt=App\Wagon::where('wag_id','=',$id)->get();
+Route::get('/getwagon/{id?}',function($id = 0){
+    $dt=DB::table('v_wagons')->where('wag_id','=',$id)->get();
     return $dt;
 });
