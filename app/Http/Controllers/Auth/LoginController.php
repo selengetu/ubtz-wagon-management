@@ -47,7 +47,7 @@ class LoginController extends Controller
     public function logout(Request $request)
 {
     $email=Auth::user()->email;
-     DB::update("update users set is_logged=0 where email='$email'");
+ 
     Auth::logout();
 
     $request->session()->invalidate();
