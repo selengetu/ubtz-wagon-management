@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name', 'EXAM') }} Нэвтрэх</title>
+    <title>{{ config('app.name', 'WAGONUBTZ') }} Нэвтрэх</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -81,22 +81,7 @@
                         </div>
                         <!-- /.col -->
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                                <p class="my-0">
-                                <a href="http://192.168.6.17/examubtz/public/password/reset">
-                                    Нэвтрэх мэдээллээ мартсан
-                                </a>
-                            </p>
-
-
-                                <p class="my-0">
-                                <a href="{{('register')}} ">
-                                    Бүртгүүлэх
-                                </a>
-                            </p>
-                        </div>
-                    </div>
+                   
                 </form>
             </div>
             <!-- /.login-card-body -->
