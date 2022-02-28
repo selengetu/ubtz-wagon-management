@@ -51,7 +51,7 @@
                         <tr>
                             <td>{{$no}}</td>
                             <td>{{$item->company_code}}</td>
-                            <td>{{$item->company_name}}</td>
+                            <td><a href="#">{{$item->company_name}}</a></td>
                             <td>{{$item->nmark}}</td>
                             <td>@if($item->is_owner == 1) Тийм @else Үгүй @endif</td>
                             <td>@if($item->is_arrender == 1) Тийм @else Үгүй @endif</td>

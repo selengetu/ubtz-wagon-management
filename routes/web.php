@@ -50,3 +50,4 @@ Route::get('/getcompany/{id?}',function($id = 0){
     $dt=DB::table('company_info')->where('company_id','=',$id)->get();
     return $dt;
 });
+Route::get('/comwag/{id}', [App\Http\Controllers\WagonController::class,'comwagon']);
