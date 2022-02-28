@@ -93,7 +93,7 @@
                         data-accordion="false">
     
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link ">
+                            <a href="{{ route('home') }}" class="nav-link ">
                             <i class="fa fa-home left"></i>
                                 <p>Үндсэн бүртгэл</p>
                               
@@ -111,7 +111,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item has-treeview"  style="margin-left:1rem;">
-                                    <a   href="#" class="nav-link">
+                                    <a href="{{ route('home') }}" class="nav-link">
                                     <i class="fa fa-book left"></i>
                                         <p >
                                         Вагон бүртгэл

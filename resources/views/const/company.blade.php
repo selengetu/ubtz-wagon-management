@@ -53,8 +53,8 @@
                             <td>{{$item->company_code}}</td>
                             <td>{{$item->company_name}}</td>
                             <td>{{$item->nmark}}</td>
-                            <td>{{$item->is_owner}}</td>
-                            <td>{{$item->is_arrender}}</td>
+                            <td>@if($item->is_owner == 1) Тийм @else Үгүй @endif</td>
+                            <td>@if($item->is_arrender == 1) Тийм @else Үгүй @endif</td>
                             <td>{{$item->note}}</td>
                             <td>{{$item->address}}</td>
                             <td>{{$item->phone}}</td>
@@ -80,7 +80,7 @@
 </div>
         <!-- Modal -->
         <div class="modal fade" id="comModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -91,33 +91,76 @@
                 <form method="POST" id="formSub" action={{ route('saveCom') }}>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="form-group">
-                                <label for="jobname">Харьяа байгууллага</label>
-                                <select class="form-control" name="p_abbr" id="p_abbr" >
-                               
+                                <label for="jobname">Компаний код</label>
+                                <input type="text" class="form-control" id="company_code" name="company_code" placeholder="Компаний код">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="jobname">Компаний нэр</label>
+                                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Компаний нэр">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="jobname">Марк</label>
+                                <input type="text" class="form-control" id="nmark" name="nmark" placeholder="Марк">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="jobname">Эзэмшигч эсэх</label>
+                                <select class="form-control" name="is_arrender" id="is_arrender" >
+                              
+                                        <option value="1">Тийм</option>
+                                        <option value="2">Үгүй</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="jobname">Түрээслэгч эсэх</label>
+                                <select class="form-control" name="is_arrender" id="is_arrender" >
+                              
+                                        <option value="1">Тийм</option>
+                                        <option value="2">Үгүй</option>
                             </select>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="jobname">Байгууллагын нэр</label>
-                                <input type="text" class="form-control" id="department_name" name="department_name" placeholder="Товч тушаал">
+                                <label for="jobname">Тэмдэглэл</label>
+                                <input type="text" class="form-control" id="note" name="note" placeholder="Тэмдэглэл">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="jobname">Товч нэр</label>
-                                <input type="text" class="form-control" id="department_abbr" name="department_abbr" placeholder="Товч тушаал">
+                                <label for="jobname">Хаяг</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Хаяг">
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-4">
                             <div class="form-group">
-                                <label for="jobname">Баланс код</label>
-                                <input type="text" class="form-control" id="balance_code" name="balance_code" placeholder="Товч тушаал">
+                                <label for="jobname">Утас</label>
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Утас">
                             </div>
                         </div>
-                    </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="jobname">Төмөр замын код</label>
+                                <input type="text" class="form-control" id="rcode" name="rcode" placeholder="Төмөр замын код">
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="jobname">Замын нэр</label>
+                                <input type="text" class="form-control" id="subway_name" name="subway_name" placeholder="Замын нэр">
+                            </div>
+                        </div>
+                       
                 </div>
                 <div class="modal-footer">
                     <input type="hidden"  id="hid" name="hid">
@@ -159,23 +202,37 @@
 } );
     function comEdit(hid){
         if(hid){
-            $.get('getDep/' + hid, function (data) {
-                $('#p_abbr').val(data[0].department_par).trigger('change');
-                $('#department_name').val(data[0].department_name);
-                $('#department_abbr').val(data[0].department_abbr);
-                $('#balance_code').val(data[0].balance_code);
-                $('#hid').val(data[0].depid);
+            $.get('getcompany/' + hid, function (data) {
+                $('#company_code').val(data[0].company_code).trigger('change');
+                $('#company_name').val(data[0].company_name);
+                $('#nmark').val(data[0].nmark);
+                $('#is_owner').val(data[0].is_owner);
+                $('#is_arrender').val(data[0].is_arrender);
+                $('#note').val(data[0].note);
+                $('#phone').val(data[0].phone);
+                $('#address').val(data[0].address);
+                $('#rcode').val(data[0].rcode);
+                $('#subway_name').val(data[0].subway_name);
+                $('#registered_date').val(data[0].registered_date);
+                $('#hid').val(data[0].company_id);
                 $('#flg').val(1);
-                document.getElementById("exampleModalLabel").innerHTML="Байгуулагын мэдээллийг засварлах";
+                document.getElementById("exampleModalLabel").innerHTML="Компаний мэдээллийг засварлах";
             });
         } else {
-             $('#p_abbr').val(0);
-                $('#department_name').val('');
-                $('#department_abbr').val('');
-                $('#balance_code').val('');
+             $('#company_code').val('').trigger('change');
+                $('#company_name').val('');
+                $('#nmark').val('');
+                $('#is_owner').val(1);
+                $('#is_arrender').val(1);
+                $('#note').val('');
+                $('#phone').val('');
+                $('#address').val('');
+                $('#rcode').val('');
+                $('#subway_name').val('');
+                $('#registered_date').val('');
                 $('#hid').val(0);
                 $('#flg').val(0);
-                document.getElementById("exampleModalLabel").innerHTML="Шинээр байгуулга нэмэх";
+                document.getElementById("exampleModalLabel").innerHTML="Шинээр компани нэмэх";
         }
     }
 
