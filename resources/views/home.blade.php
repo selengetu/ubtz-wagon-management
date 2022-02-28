@@ -45,9 +45,7 @@
                         <th>#</th>
                             <th>Төмөр замын код</th>
                             <th>Вагон №</th>
-                            <th>Загвар</th>
                             <th>Ангилал</th>
-                            <th>Үйлдвэрлэгч</th>
                             <th>Баазын урт</th>
                             <th>Голын тоо</th>
                             <th>Голын Даац</th>
@@ -58,18 +56,16 @@
                         <tbody id="tbody">
                         <?php $no = 1; ?>
                         @foreach ($wagons as $item )
-                        <tr class="wagondetail" onclick="$('#nav-detail-tab').trigger('click')" tag="{{$item->wag_id}}">
+                        <tr class="wagondetail" onclick="$('#nav-detail-tab').trigger('click')" tag="{{$item->wagid}}">
                             <td>{{$no}}</td>
                             <td>{{$item->rcode}}</td>
                             <td>{{$item->wagno}}</td>
-                            <td>{{$item->model_name}}</td>
-                            <td>{{$item->category_name}}</td>
-                            <td>{{$item->factory_name}}</td>
-                            <td>{{$item->base_length}}</td>
+                            <td>{{$item->catcode}}</td>
+                            <td>{{$item->len}}</td>
                             <td>{{$item->axes}}</td>
-                            <td>{{$item->axe_capacity}}</td>
-                            <td>{{$item->netto}}</td>
-                            <td>{{$item->brutto}}</td>
+                            <td>{{$item->weight}}</td>
+                            <td>{{$item->door}}</td>
+                            <td>{{$item->floor}}</td>
                             <td>{{$item->volume}}</td>
                         </tr>
                         <?php $no++; ?>
@@ -462,7 +458,7 @@ $('.wagondetail').on('click',function(){
                     $('#d_absorption_date').text(qwe.absorption_date);
 
 
-                    $('#wag_id').val(qwe.wag_id);
+                    $('#wag_id').val(qwe.wagid);
                     $('#rcode').val(qwe.rcode);
                     $('#wagno').val(qwe.wagno);
                     $('#model_id').val(qwe.model_id);
