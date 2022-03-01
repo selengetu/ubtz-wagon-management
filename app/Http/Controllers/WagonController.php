@@ -84,9 +84,10 @@ class WagonController extends Controller {
     }
     public function comwagon($id)
     {
-        $id=Auth::user()->id;
+        $uid=Auth::user()->id;
         $categories= DB::select("select * from SET_WAGON_CATEGORIES t");
         $companies= DB::select("select * from COMPANY_INFO t");
+        $company= DB::select("select * from COMPANY_INFO t where company_id = $id")[0];
         $contract_type= DB::select("select * from SET_CONTRACT_TYPES t");
         $countries= DB::select("select * from SET_COUNTRIES t");
         $factories= DB::select("select * from SET_FACTORIES t");
@@ -94,7 +95,7 @@ class WagonController extends Controller {
         $railways= DB::select("select * from SET_RAILWAYS t");
         $wagon_depos= DB::select("select * from SET_DEPOS t");
         $wagons= DB::select("select * from COMPANY_WAGONS t where company_id = $id");
-        return view('com_wagon', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
+        return view('com_wagon', compact('categories','companies','company','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
     public function type()
     {

@@ -38,7 +38,7 @@ Route::get('/wagon/delete/{id}', [App\Http\Controllers\WagonController::class,'d
 Route::post('/savewagon',[App\Http\Controllers\WagonController::class,'savewagon'])->name('savewagon');
 Route::post('/updatewagon','WagonController@update');
 Route::get('/getwagon/{id?}',function($id = 0){
-    $dt=DB::table('v_wagons')->where('wag_id','=',$id)->get();
+    $dt=DB::table('COMPANY_WAGONS')->where('wag_id','=',$id)->get();
     return $dt;
 });
 

@@ -22,7 +22,7 @@
     <div class="col-md-12">
         <div class="card" style="font-size:12px;">
             <div class="card-header">
-                <h3 class="card-title">Вагоны мэдээлэл</h3>
+                <h3 class="card-title">"{{$company->company_name}}" компаний вагоны мэдээлэл</h3>
                 <div class="card-tools">
                     <button class="btn btn-default btn-small right"  id="addbutton" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button>
                 </div>
