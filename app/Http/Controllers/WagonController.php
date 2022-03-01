@@ -24,6 +24,7 @@ class WagonController extends Controller {
         $railways= DB::select("select * from SET_RAILWAYS t");
         $wagon_depos= DB::select("select * from SET_DEPOS t");
         $wagons= DB::select("select * from COMPANY_WAGONS t");
+     
         return view('home', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
     public function savewagon(Request $request)
@@ -95,8 +96,19 @@ class WagonController extends Controller {
         $wagons= DB::select("select * from COMPANY_WAGONS t where company_id = $id");
         return view('com_wagon', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
-    public function delete(Request $request)
+    public function type()
     {
-        
+       
+        $models= DB::select("select * from SET_WAGON_MODELS t");
+        $railways= DB::select("select * from SET_RAILWAYS t");
+        return view('com_wagon', compact('models','railways'));
+    }
+
+    public function railway()
+    {
+       
+        $models= DB::select("select * from SET_WAGON_MODELS t");
+        $railways= DB::select("select * from SET_RAILWAYS t");
+        return view('com_wagon', compact('models','railways'));
     }
 }

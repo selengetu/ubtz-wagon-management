@@ -51,3 +51,8 @@ Route::get('/getcompany/{id?}',function($id = 0){
     return $dt;
 });
 Route::get('/comwag/{id}', [App\Http\Controllers\WagonController::class,'comwagon']);
+
+
+Route::get('/type', [App\Http\Controllers\WagonController::class, 'type'])->name('type');
+
+Route::get('/railway', [App\Http\Controllers\WagonController::class, 'railway'])->name('railway');

@@ -18,29 +18,18 @@
     <link rel="stylesheet" href="{{ asset('vendor/fontawesome-free/css/all.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.css') }}">
- 
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
  
     <style>
     thead{
-        background:#1e2c6b ;
+        background:#4285F4 ;
         color: #fff !important;
     }
-    .navbar-lightblue {
-        background-color: #1e2c6b !important;
-        color: #fff !important;
-    }
-    .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
-        background-color: #1e2c6b !important;
-        color: #fff !important;
-    }
-    }
-    a{
-        color: #1e2c6b;
-    }
+   
     </style>
     @yield('style')
 </head>
-
+@include('wagon_css')
 <body
     class="hold-transition sidebar-mini sidebar-open">
     <div class="wrapper" id="app">
@@ -122,7 +111,36 @@
                               </ul>
                              
                         </li>
-                      
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link ">
+                            <i class="fa fa-home left"></i>
+                                <p>Тохиргоо</p>
+                              
+                                    <i class="fas fa-angle-left right"></i>
+               
+                            </a>
+                       
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item has-treeview"  style="margin-left:1rem;">
+                                    <a   href="{{ route('railway') }}" class="nav-link">
+                                    <i class="fa fa-book left"></i>
+                                        <p >
+                                        Төмөр зам
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview"  style="margin-left:1rem;">
+                                    <a href="{{ route('type') }}" class="nav-link">
+                                    <i class="fa fa-book left"></i>
+                                        <p >
+                                       Вагон төрөл
+                                        </p>
+                                    </a>
+                                </li>
+                             
+                              </ul>
+                             
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
