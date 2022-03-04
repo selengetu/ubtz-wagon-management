@@ -2,18 +2,6 @@
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
-<style>
-    .scroll {
-        margin:4px, 4px;
-        padding:4px;
-        height: 710px;
-        overflow-x: hidden;
-        overflow-y: auto;
-        text-align:justify;
-    }
-   
-   
-    </style>
 
 @stop
 
@@ -28,7 +16,19 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
+            <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Жагсаалт</a>
+                <a class="nav-item nav-link" id="nav-vagon-tab" data-toggle="tab" href="#nav-vagon" role="tab" aria-controls="nav-vagon" aria-selected="false"> Вагон жагсаалт</a>
+                <a class="nav-item nav-link" id="nav-detail-tab" data-toggle="tab" href="#nav-detail" role="tab" aria-controls="nav-detail" aria-selected="false"> Үндсэн мэдээлэл</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Засвар</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Эд анги</a>
+            </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="table-responsive">
+                <br>
                     <table class="table table-bordered table-striped" id="myTable">
                         <thead >
                             <th>#</th>
@@ -48,10 +48,10 @@
                         <tbody id="tbody">
                         <?php $no = 1; ?>
                         @foreach ($companies as $item )
-                        <tr>
+                        <tr >
                             <td>{{$no}}</td>
-                            <td>{{$item->company_code}}</td>
-                            <td><a href="#">{{$item->company_name}}</a></td>
+                            <td >{{$item->company_code}}</td>
+                            <td class="comwagon" onclick="$('#nav-vagon-tab').trigger('click')" tag="{{$item->company_id}}">{{$item->company_name}}</td>
                             <td>{{$item->nmark}}</td>
                             <td>@if($item->is_owner == 1) Тийм @else Үгүй @endif</td>
                             <td>@if($item->is_arrender == 1) Тийм @else Үгүй @endif</td>
@@ -74,6 +74,36 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="tab-pane fade" id="nav-vagon" role="tabpanel" aria-labelledby="nav-vagon-tab">
+            <div class="table-responsive">
+                <br>
+                    <table class="table table-bordered table-striped" id="myTable">
+                        <thead >
+                        <th>#</th>
+                            <th>Төмөр замын код</th>
+                            <th>Вагон №</th>
+                            <th>Ангилал</th>
+                            <th>Баазын урт</th>
+                            <th>Голын тоо</th>
+                            <th>Голын Даац</th>
+                            <th>Цэвэр жин</th>
+                            <th>Бохир жин</th>
+                            <th>Эзэлхүүн</th>
+                        </thead>
+                        <tbody id="tbody">
+                        <?php $no = 1; ?>
+                      
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-detail" role="tabpanel" aria-labelledby="nav-detail-tab">...</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+            </div>
+             
             </div>
         </div>
     </div>
@@ -235,8 +265,19 @@
                 document.getElementById("exampleModalLabel").innerHTML="Шинээр компани нэмэх";
         }
     }
+  
+    $('.comwagon').on('click',function(){
+            var itag=$(this).attr('tag');
+           $.get('comwagon/'+itag,function(data){
 
+             $.each(data,function(i,qwe){
 
+               
+                   
+
+         });
+          });
+        });
 
 </script>
 @stop

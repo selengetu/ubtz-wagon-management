@@ -93,7 +93,7 @@
                             <ul class="nav nav-treeview">
                             <li class="nav-item has-treeview"  style="margin-left:1rem;">
                                     <a   href="{{ route('company') }}" class="nav-link">
-                                    <i class="fa fa-book left"></i>
+                                    <i class="fa fa-university left"></i>
                                         <p >
                                         Компани бүртгэл
                                         </p>
@@ -101,7 +101,7 @@
                                 </li>
                                 <li class="nav-item has-treeview"  style="margin-left:1rem;">
                                     <a href="{{ route('home') }}" class="nav-link">
-                                    <i class="fa fa-book left"></i>
+                                    <i class="fa fa-subway left"></i>
                                         <p >
                                         Вагон бүртгэл
                                         </p>
@@ -113,7 +113,7 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link ">
-                            <i class="fa fa-home left"></i>
+                            <i class="fa fa-cog left"></i>
                                 <p>Тохиргоо</p>
                               
                                     <i class="fas fa-angle-left right"></i>
@@ -123,7 +123,7 @@
                             <ul class="nav nav-treeview">
                             <li class="nav-item has-treeview"  style="margin-left:1rem;">
                                     <a   href="{{ route('railway') }}" class="nav-link">
-                                    <i class="fa fa-book left"></i>
+                                    <i class="fa fa-subway left"></i>
                                         <p >
                                         Төмөр зам
                                         </p>
@@ -131,7 +131,7 @@
                                 </li>
                                 <li class="nav-item has-treeview"  style="margin-left:1rem;">
                                     <a href="{{ route('type') }}" class="nav-link">
-                                    <i class="fa fa-book left"></i>
+                                    <i class="fa fa-train left"></i>
                                         <p >
                                        Вагон төрөл
                                         </p>
