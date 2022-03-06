@@ -62,3 +62,11 @@ Route::get('/getwagons/{id?}',function($id = 0){
 Route::get('/type', [App\Http\Controllers\WagonController::class, 'type'])->name('type');
 
 Route::get('/railway', [App\Http\Controllers\WagonController::class, 'railway'])->name('railway');
+
+Route::get('/contractType', [App\Http\Controllers\ContractTypeController::class, 'index'])->name('contractType');
+Route::get('/contractType/delete/{id}', [App\Http\Controllers\ContractTypeController::class,'delete']);
+Route::post('/saveContractType',[App\Http\Controllers\ContractTypeController::class,'save'])->name('saveContractType');
+Route::get('/getContractType/{id?}',function($id = 0){
+    $dt=DB::table('SET_CONTRACT_TYPES')->where('contract_type_code','=',$id)->get();
+    return $dt;
+});

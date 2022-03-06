@@ -122,6 +122,14 @@
                        
                             <ul class="nav nav-treeview">
                             <li class="nav-item has-treeview"  style="margin-left:1rem;">
+                                    <a   href="{{ route('contractType') }}" class="nav-link">
+                                    <i class="fa fa-university left"></i>
+                                        <p >
+                                        Гэрээний төрөл
+                                        </p>
+                                    </a>
+                                </li>
+                            <li class="nav-item has-treeview"  style="margin-left:1rem;">
                                     <a   href="{{ route('railway') }}" class="nav-link">
                                     <i class="fa fa-subway left"></i>
                                         <p >
