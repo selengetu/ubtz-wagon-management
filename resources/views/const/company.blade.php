@@ -2,7 +2,17 @@
 @section('style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
-
+<style>
+     .disabledTab {
+    pointer-events: none;
+}
+.disabledTab1 {
+    pointer-events: none;
+}
+              .table-row{
+                  cursor:pointer;
+              }
+    </style>
 @stop
 
 @section('content')
@@ -19,10 +29,11 @@
             <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Жагсаалт</a>
-                <a class="nav-item nav-link" id="nav-vagon-tab" data-toggle="tab" href="#nav-vagon" role="tab" aria-controls="nav-vagon" aria-selected="false"> Вагон жагсаалт</a>
-                <a class="nav-item nav-link" id="nav-detail-tab" data-toggle="tab" href="#nav-detail" role="tab" aria-controls="nav-detail" aria-selected="false"> Үндсэн мэдээлэл</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Засвар</a>
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Эд анги</a>
+                <a class="nav-item nav-link menuli1 disabled disabledTab" id="nav-contract-tab" data-toggle="tab" href="#nav-contract" role="tab" aria-controls="nav-contract" aria-selected="false">Гэрээ</a>
+                <a class="nav-item nav-link menuli1 disabled disabledTab" id="nav-vagon-tab" data-toggle="tab" href="#nav-vagon" role="tab" aria-controls="nav-vagon" aria-selected="false"> Вагон жагсаалт</a>
+                <a class="nav-item nav-link menuli2 disabled disabledTab1" id="nav-detail-tab" data-toggle="tab" href="#nav-detail" role="tab" aria-controls="nav-detail" aria-selected="false"> Үндсэн мэдээлэл</a>
+                <a class="nav-item nav-link  menuli2 disabled disabledTab1" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Засвар</a>
+                <a class="nav-item nav-link menuli2 disabled disabledTab1" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Эд анги</a>
             </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -51,7 +62,7 @@
                         <tr >
                             <td>{{$no}}</td>
                             <td >{{$item->company_code}}</td>
-                            <td class="comwagon" onclick="$('#nav-vagon-tab').trigger('click')" tag="{{$item->company_id}}">{{$item->company_name}}</td>
+                            <td class="comwagon" onclick="$('#nav-contract-tab').trigger('click')" tag="{{$item->company_id}}"><b>{{$item->company_name}}</b></td>
                             <td>{{$item->nmark}}</td>
                             <td>@if($item->is_owner == 1) Тийм @else Үгүй @endif</td>
                             <td>@if($item->is_arrender == 1) Тийм @else Үгүй @endif</td>
@@ -78,18 +89,41 @@
             <div class="tab-pane fade" id="nav-vagon" role="tabpanel" aria-labelledby="nav-vagon-tab">
             <div class="table-responsive">
                 <br>
-                    <table class="table table-bordered table-striped" id="myTable">
+                    <table class="table table-bordered table-striped" id="vagonsTable">
                         <thead >
-                        <th>#</th>
-                            <th>Төмөр замын код</th>
+
                             <th>Вагон №</th>
+                            <th>Төрөл</th>
+                            <th>Төмөр замын код</th>
                             <th>Ангилал</th>
-                            <th>Баазын урт</th>
+                            <th>Групп</th>
                             <th>Голын тоо</th>
-                            <th>Голын Даац</th>
-                            <th>Цэвэр жин</th>
-                            <th>Бохир жин</th>
+                            <th>Жин</th>
+                            <th>Баазын урт</th>
                             <th>Эзэлхүүн</th>
+                            <th>Шал</th>
+                            <th>Хаалганы тоо</th>
+
+                        </thead>
+                        <tbody id="tbody">
+                        <?php $no = 1; ?>
+                      
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-contract" role="tabpanel" aria-labelledby="nav-contract-tab">
+            <div class="table-responsive">
+                <br>
+                    <table class="table table-bordered table-striped" id="contractTable">
+                        <thead >
+                            <th>Гэрээний төрөл</th>
+                            <th>Гэрээний дугаар</th>
+                            <th>Эхлэх огноо</th>
+                            <th>Дуусах огноо</th>
+                            <th>Тэмдэглэл</th>
+                            <th></th>
                         </thead>
                         <tbody id="tbody">
                         <?php $no = 1; ?>
@@ -268,15 +302,48 @@
   
     $('.comwagon').on('click',function(){
             var itag=$(this).attr('tag');
-           $.get('comwagon/'+itag,function(data){
+            $( ".menuli1" ).removeClass("disabled disabledTab");
+            $("#contractTable tbody").empty();    
+            $("#vagonsTable tbody").empty();    
+            $.get('getwagons/'+itag,function(data){
 
-             $.each(data,function(i,qwe){
+                $.each(data,function(i,qwe){
+              var sHtml = "<tr>" +
+        "   <td class='m1'>" + qwe.wagno + "</td>" +
+        "   <td class='m2'>" + qwe.wagtype + "</td>" +
+        "   <td class='m3'>" + qwe.rcode + "</td>" +
+         "   <td class='m3'>" + qwe.category_name + "</td>"+
+       "   <td class='m3'>" +  qwe.waggroup + "</td>"+
+       "   <td class='m3'>" + qwe.axes + "</td>"+
+       "   <td class='m3'>" +  qwe.weight + "</td>"+
+       "   <td class='m3'>" + qwe.len + "</td>"+
+       "   <td class='m3'>" +  qwe.volume + "</td>"+
+       "   <td class='m3'>" +  qwe.floor + "</td>"+
+       "   <td class='m3'>" +  qwe.door + "</td>"+
 
+        "</tr>";
+
+        $("#vagonsTable tbody").append(sHtml);
                
-                   
-
+               
          });
-          });
+                });
+                $.get('getcontract/'+itag,function(data){
+
+                $.each(data,function(i,qwe){
+                var sHtml = "<tr>" +
+                "   <td class='m1'>" + qwe.contract_type_name + "</td>" +
+                "   <td class='m2'>" + qwe.contract_no + "</td>" +
+                "   <td class='m3'>" + qwe.begin_date + "</td>" +
+                "   <td class='m3'>" + qwe.end_date + "</td>"+
+                "   <td class='m3'>" +  qwe.contract_notes + "</td>"+
+                "</tr>";
+
+                $("#contractTable tbody").append(sHtml);
+
+
+                });
+                });
         });
 
 </script>
