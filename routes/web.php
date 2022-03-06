@@ -70,3 +70,11 @@ Route::get('/getContractType/{id?}',function($id = 0){
     $dt=DB::table('SET_CONTRACT_TYPES')->where('contract_type_code','=',$id)->get();
     return $dt;
 });
+
+Route::get('/contract/delete/{id}', [App\Http\Controllers\ContractController::class,'delete']);
+Route::post('/saveContract',[App\Http\Controllers\ContractController::class,'save'])->name('saveContractType');
+Route::get('/getContract/{id?}',function($id = 0){
+    $dt=DB::table('CONTRACT_INFO')->where('contract_type_code','=',$id)->get();
+    return $dt;
+});
+

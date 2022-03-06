@@ -16,7 +16,17 @@ class CompanyController extends Controller {
     {
         $id=Auth::user()->id;
         $companies= DB::select("select * from COMPANY_INFO t");
-        return view('const.company', compact('companies'));
+        $categories= DB::select("select * from SET_WAGON_CATEGORIES t");
+        $companies= DB::select("select * from COMPANY_INFO t");
+        $company= DB::select("select * from COMPANY_INFO t where company_id = $id")[0];
+        $contract_type= DB::select("select * from SET_CONTRACT_TYPES t");
+        $countries= DB::select("select * from SET_COUNTRIES t");
+        $factories= DB::select("select * from SET_FACTORIES t");
+        $models= DB::select("select * from SET_WAGON_MODELS t");
+        $railways= DB::select("select * from SET_RAILWAYS t");
+        $wagon_depos= DB::select("select * from SET_DEPOS t");
+        $wagons= DB::select("select * from COMPANY_WAGONS t where company_id = $id");
+        return view('const.company', compact('companies','categories','companies','company','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
     public function save(Request $request)
     {

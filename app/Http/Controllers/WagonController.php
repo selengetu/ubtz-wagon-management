@@ -29,58 +29,31 @@ class WagonController extends Controller {
     }
     public function savewagon(Request $request)
     {
-        if($request->type == 1){
+
+        if($request->flg == 0){
             $wag = new Wagon;
             $wag->rcode = $request->rcode;
             $wag->wagno = $request->wagno;
-            $wag->model_id = $request->model_id;
-            $wag->model_no = $request->model_no;
             $wag->catcode = $request->catcode;
-            $wag->factory_code =$request->factory_code;
-            $wag->factory_date =$request->factory_date;
-            $wag->axes = $request->axes;
-            $wag->axe_capacity = $request->axe_capacity;
-            $wag->brutto = $request->brutto;
-            $wag->netto = $request->netto;
-            $wag->base_length = $request->base_length;
-            $wag->ram_length = $request->ram_length;
-            $wag->carrying_capacity = $request->carrying_capacity;
-            $wag->tare_weight = $request->tare_weight;
-            $wag->volume = $request->volume;
+            $wag->company_id = $request->company_id;
+            $wag->wagtype = $request->wagtype;
+            $wag->waggroup = $request->waggroup;
+            $wag->axes = $request->company_id;
+            $wag->weight = $request->wagtype;
+            $wag->len = $request->waggroup;
             $wag->door = $request->door;
-            $wag->number_of_hatches = $request->number_of_hatches;
-            $wag->side_hatches = $request->side_hatches;
-            $wag->roof_hatches = $request->roof_hatches;
-            $wag->floor_area = $request->floor_area;
-            $wag->number_of_side_boards = $request->number_of_side_boards;
-            $wag->number_of_side_rack_brackets = $request->number_of_side_rack_brackets;
-            $wag->purposed_cargoes = $request->purposed_cargoes;
-            $wag->load_hatch = $request->load_hatch;
-            $wag->unload_hatch = $request->unload_hatch;
-            $wag->transfer_panel = $request->rcode;
-            $wag->hand_stop = $request->hand_stop;
-            $wag->stop_type = $request->stop_type;
-            $wag->auto_hook_type = $request->auto_hook_type;
-            $wag->auto_trigger_type = $request->auto_trigger_type;
-            $wag->absorption_type = $request->absorption_type;
-            $wag->absorption_category = $request->absorption_category;
-            $wag->absorption_date = $request->absorption_date;
-            $wag->vu4m_wagon_techinfo = $request->vu4m_wagon_techinfo;
+            $wag->volume = $request->volume;
+            $wag->floor = $request->floor;
             $wag->save();
         }
-        if($request->type == 2){
-            $wag = DB::table('wagons')
-            ->where('wag_id', $request->wag_id)
-            ->update(['rcode' => $request->rcode,'wagno' => $request->wagno,'model_id' => $request->model_id,'model_no' => $request->model_no,'catcode' => $request->catcode,
-            'factory_code' => $request->factory_code,'factory_date' => $request->factory_date,'axes' => $request->axes,'axe_capacity' => $request->axe_capacity,'brutto' => $request->brutto,'netto' => $request->netto,
-            'base_length' => $request->base_length,'ram_length' => $request->ram_length,'carrying_capacity' => $request->carrying_capacity,'tare_weight' => $request->tare_weight,'volume' => $request->volume,'door' => $request->door,
-            'number_of_hatches' => $request->number_of_hatches,'side_hatches' => $request->side_hatches,'roof_hatches' => $request->roof_hatches,'floor_area' => $request->floor_area,
-            'number_of_side_boards' => $request->number_of_side_boards,'number_of_side_rack_brackets' => $request->number_of_side_rack_brackets,'purposed_cargoes' => $request->purposed_cargoes,'load_hatch' => $request->load_hatch,'unload_hatch' => $request->unload_hatch,
-            'transfer_panel' => $request->transfer_panel,'hand_stop' => $request->hand_stop,'stop_type' => $request->stop_type,'auto_hook_type' => $request->auto_hook_type,'auto_trigger_type' => $request->auto_trigger_type,
-            'absorption_type' => $request->absorption_type,'absorption_category' => $request->absorption_category,'absorption_date' => $request->absorption_date]);
+        if($request->flg == 1){
+            $wag = DB::table('COMPANY_WAGONS')
+            ->where('wagid', $request->wagid)
+            ->update(['rcode' => $request->rcode,'wagno' => $request->wagno,'catcode' => $request->catcode,
+            'wagtype' => $request->wagtype,'waggroup' => $request->waggroup,'axes' => $request->axes,'weight' => $request->weight,'len' => $request->len,'door' => $request->door,
+            'volume' => $request->volume,'floor' => $request->floor]);
         }
-      
-        return Redirect('home');
+        return back()->withInput();
     }
     public function comwagon($id)
     {
