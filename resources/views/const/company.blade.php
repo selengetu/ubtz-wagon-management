@@ -248,9 +248,20 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" id="formSub" action={{ route('saveCom') }}>
+                <form method="POST" id="formSub" action={{ route('saveContract') }}>
                 <div class="modal-body">
                     <div class="row">
+                    <div class="col-4">
+                            <div class="form-group">
+                                <label for="jobname">Гэрээний төрөл</label>
+                                <select class="form-control" name="contract_type_code" id="contract_type_code" >
+                                @foreach ($contract_type as $item)
+                                        <option value="{{ $item->contract_type_code }}">{{ $item->contract_name }}</option>
+                                    @endforeach
+                            </select>
+                            </div>
+                        </div>
+                   
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="jobname">Гэрээний №</label>
@@ -301,7 +312,7 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="POST" id="formSub" action='savewagon'>
+                <form method="POST" id="formSub" action='{{ route('savewagon') }}'>
                 <div class="modal-body">
                     <div class="row">
                     <div class="col-3">
@@ -476,12 +487,11 @@
                 $('#contract_notes').val(data[0].contract_notes);
                 $('#company_id').val(data[0].company_id);
                 $('#contract_type_code').val(data[0].contract_type_code).trigger('change');
-                $('#hid').val(data[0].contract_type_code);
-                $('#flg').val(1);
+                $('#hid1').val(data[0].contract_id);
+                $('#flg1').val(1);
                 document.getElementById("exampleModalLabel1").innerHTML="Компаний гэрээг засварлах";
             });
         } else {
-             $('#company_code').val('').trigger('change');
              $('#contract_no').val('');
                 $('#begin_date').val('');
                 $('#end_date').val('');
@@ -563,12 +573,12 @@
 
                 $.each(data,function(i,qwe){
                 var sHtml = "<tr>" +
-                "   <td class='m1'>" + qwe.contract_type_name + "</td>" +
+                "   <td class='m1'>" + qwe.contract_name + "</td>" +
                 "   <td class='m2'>" + qwe.contract_no + "</td>" +
                 "   <td class='m3'>" + qwe.begin_date + "</td>" +
                 "   <td class='m3'>" + qwe.end_date + "</td>"+
                 "   <td class='m3'>" +  qwe.contract_notes + "</td>"+
-                "   <td class='m1'> <a class='btn btn-xs btn-info' data-toggle='modal' data-target='#wagonModal' data-id=" + qwe.contract_id + " tag=" + qwe.contract_id + " onclick='wagonEdit(" + qwe.contract_id + ")'><i class='fa fa-edit'></i></a> </td>" +
+                "   <td class='m1'> <a class='btn btn-xs btn-info' data-toggle='modal' data-target='#conModal' data-id=" + qwe.contract_id + " tag=" + qwe.contract_id + " onclick='conEdit(" + qwe.contract_id + ")'><i class='fa fa-edit'></i></a> </td>" +
       
                 "</tr>";
 

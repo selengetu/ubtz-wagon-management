@@ -44,7 +44,7 @@ Route::get('/getwagon/{id?}',function($id = 0){
 
 Route::get('/company', [App\Http\Controllers\CompanyController::class, 'index'])->name('company');
 Route::get('/company/delete/{id}', [App\Http\Controllers\CompanyController::class,'delete']);
-Route::post('/savecompany',[App\Http\Controllers\CompanyController::class,'save'])->name('saveCom');
+Route::post('/saveCom',[App\Http\Controllers\CompanyController::class,'save'])->name('saveCom');
 Route::post('/updatecompany','CompanyController@update');
 Route::get('/getcompany/{id?}',function($id = 0){
     $dt=DB::table('company_info')->where('company_id','=',$id)->get();
@@ -72,9 +72,9 @@ Route::get('/getContractType/{id?}',function($id = 0){
 });
 
 Route::get('/contract/delete/{id}', [App\Http\Controllers\ContractController::class,'delete']);
-Route::post('/saveContract',[App\Http\Controllers\ContractController::class,'save'])->name('saveContractType');
+Route::post('/saveContract',[App\Http\Controllers\ContractController::class,'save'])->name('saveContract');
 Route::get('/getContract/{id?}',function($id = 0){
-    $dt=DB::table('CONTRACT_INFO')->where('contract_type_code','=',$id)->get();
+    $dt=DB::table('CONTRACT_INFO')->where('contract_id','=',$id)->get();
     return $dt;
 });
 
