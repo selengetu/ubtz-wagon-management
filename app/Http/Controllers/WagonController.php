@@ -23,7 +23,7 @@ class WagonController extends Controller {
         $models= DB::select("select * from SET_WAGON_MODELS t");
         $railways= DB::select("select * from SET_RAILWAYS t");
         $wagon_depos= DB::select("select * from SET_DEPOS t");
-        $wagons= DB::select("select * from COMPANY_WAGONS t");
+        $wagons= DB::select("select * from V_COMPANY_WAGONS t");
      
         return view('home', compact('categories','companies','contract_type','countries','factories','models','railways','models','wagon_depos','wagons'));
     }
