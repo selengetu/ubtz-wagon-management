@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wagon extends Model
 {
-    protected $table = 'wagons';
+    protected $table = 'COMPANY_WAGONS';
     use HasFactory;
 
-    protected $primaryKey = 'wag_id';
+    protected $primaryKey = 'wagid';
     // define the sequence name used for incrementing
     // default value would be {table}_{primaryKey}_seq if not set
     protected $sequence = null;

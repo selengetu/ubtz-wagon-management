@@ -29,8 +29,8 @@ class WagonController extends Controller {
     }
     public function savewagon(Request $request)
     {
-
-        if($request->flg == 0){
+     
+        if($request->flg2 == 0){
             $wag = new Wagon;
             $wag->rcode = $request->rcode;
             $wag->wagno = $request->wagno;
@@ -44,11 +44,12 @@ class WagonController extends Controller {
             $wag->door = $request->door;
             $wag->volume = $request->volume;
             $wag->floor = $request->floor;
+            $wag->company_id = $request->cid2;
             $wag->save();
         }
-        if($request->flg == 1){
+        if($request->flg2 == 1){
             $wag = DB::table('COMPANY_WAGONS')
-            ->where('wagid', $request->wagid)
+            ->where('wagid', $request->hid2)
             ->update(['rcode' => $request->rcode,'wagno' => $request->wagno,'catcode' => $request->catcode,
             'wagtype' => $request->wagtype,'waggroup' => $request->waggroup,'axes' => $request->axes,'weight' => $request->weight,'len' => $request->len,'door' => $request->door,
             'volume' => $request->volume,'floor' => $request->floor]);

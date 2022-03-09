@@ -23,13 +23,13 @@ class ContractController extends Controller {
             $con->begin_date = $request->begin_date;
             $con->end_date = $request->end_date;
             $con->contract_notes = $request->contract_notes;
-            $con->company_id = $request->company_id;
+            $con->company_id = $request->cid1;
             $con->save();
         }
         if($request->flg1 == 1){
             $con = DB::table('CONTRACT_INFO')
             ->where('contract_id', $request->hid1)
-            ->update(['contract_type_code' => $request->contract_type_code,'contract_no' => $request->contract_no,'begin_date' => to_date('$request->begin_date'),'end_date' => to_date('$request->end_date'),
+            ->update(['contract_type_code' => $request->contract_type_code,'contract_no' => $request->contract_no,'begin_date' => $request->begin_date,'end_date' => $request->end_date,
             'contract_notes' => $request->contract_notes]);
         }
       

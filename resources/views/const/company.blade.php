@@ -90,7 +90,23 @@
             <div class="table-responsive">
                 <br>
                 <button class="btn btn-default btn-xs right"  onclick="wagonEdit()" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button>
-                    <table class="table table-bordered table-striped" id="vagonsTable">
+                <table class="table table-bordered table-striped" id="comTable">
+                        <thead >
+                        <th>Компаний код</th>
+                            <th>Компаний нэр</th>
+                            <th>Марк</th>
+                            <th>Тэмдэглэл</th>
+                            <th>Хаяг</th>
+                            <th>Утас</th>
+                            <th>Төмөр замын код</th>
+                            <th></th>
+                        </thead>
+                        <tbody id="tbody">
+                      
+                        </tbody>
+                    </table>
+                    <br>
+                <table class="table table-bordered table-striped" id="vagonsTable">
                         <thead >
 
                             <th>Вагон №</th>
@@ -115,9 +131,27 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-contract" role="tabpanel" aria-labelledby="nav-contract-tab">
+                
             <div class="table-responsive">
                 <br>
                 <button class="btn btn-default btn-xs right"  onclick="conEdit()" data-toggle="modal" data-target="#conModal"><i class="fa fa-plus"></i> Гэрээ нэмэх</button>
+                <br>
+                <table class="table table-bordered table-striped" id="com1Table">
+                        <thead >
+                          
+                            <th>Компаний код</th>
+                            <th>Компаний нэр</th>
+                            <th>Марк</th>
+                            <th>Тэмдэглэл</th>
+                            <th>Хаяг</th>
+                            <th>Утас</th>
+                            <th>Төмөр замын код</th>
+                        </thead>
+                        <tbody id="tbody">
+                      
+                        </tbody>
+                    </table>
+                    <br>
                     <table class="table table-bordered table-striped" id="contractTable">
                         <thead >
                             <th>Гэрээний төрөл</th>
@@ -506,46 +540,65 @@
     function wagonEdit(hid){
         if(hid){
             $.get('getwagon/' + hid, function (data) {
-                $('#company_code').val(data[0].company_code).trigger('change');
-                $('#company_name').val(data[0].company_name);
-                $('#nmark').val(data[0].nmark);
-                $('#is_owner').val(data[0].is_owner);
-                $('#is_arrender').val(data[0].is_arrender);
-                $('#note').val(data[0].note);
-                $('#phone').val(data[0].phone);
-                $('#address').val(data[0].address);
+                $('#wagno').val(data[0].wagno);
+                $('#wagtype').val(data[0].wagtype);
                 $('#rcode').val(data[0].rcode);
-                $('#subway_name').val(data[0].subway_name);
-                $('#registered_date').val(data[0].registered_date);
-                $('#hid').val(data[0].company_id);
-                $('#flg').val(1);
-                document.getElementById("exampleModalLabel").innerHTML="Компаний мэдээллийг засварлах";
+                $('#catcode').val(data[0].catcode);
+                $('#waggroup').val(data[0].waggroup);
+                $('#axes').val(data[0].axes);
+                $('#weight').val(data[0].weight);
+                $('#len').val(data[0].len);
+                $('#volume').val(data[0].volume);
+                $('#door').val(data[0].door);
+                $('#floor').val(data[0].floor);
+                $('#hid2').val(data[0].wagid);
+                $('#flg2').val(1);
+                document.getElementById("modallabel").innerHTML=">Вагоны мэдээллийг засварлах";
             });
         } else {
-             $('#company_code').val('').trigger('change');
-                $('#company_name').val('');
-                $('#nmark').val('');
-                $('#is_owner').val(1);
-                $('#is_arrender').val(1);
-                $('#note').val('');
-                $('#phone').val('');
-                $('#address').val('');
+            $('#wagno').val('');
+                $('#wagtype').val('');
                 $('#rcode').val('');
-                $('#subway_name').val('');
-                $('#registered_date').val('');
-                $('#hid').val(0);
-                $('#flg').val(0);
-                document.getElementById("exampleModalLabel").innerHTML="Шинээр компани нэмэх";
+                $('#catcode').val('1');
+                $('#waggroup').val('');
+                $('#axes').val('');
+                $('#weight').val('');
+                $('#len').val('');
+                $('#volume').val('');
+                $('#door').val('');
+                $('#floor').val('');
+                $('#hid2').val(0);
+                $('#flg2').val(0);
+                document.getElementById("modallabel").innerHTML="Шинээр вагон нэмэх";
         }
     }
     $('.comwagon').on('click',function(){
             var itag=$(this).attr('tag');
             $( ".menuli1" ).removeClass("disabled disabledTab");
             $( "#comButton" ).hide();
-            $("#contractTable tbody").empty();    
+            $("#contractTable tbody").empty();   
             $("#vagonsTable tbody").empty();   
             $('#cid1').val(itag); 
             $('#cid2').val(itag); 
+            $.get('getcompany/'+itag,function(data){
+
+                $.each(data,function(i,qwe){
+                var sHtml = "<tr>" +
+                "   <td class='m1'>" + qwe.company_code + "</td>" +
+                "   <td class='m2'>" + qwe.company_name + "</td>" +
+                "   <td class='m3'>" + qwe.nmark + "</td>" +
+                "   <td class='m3'>" + qwe.note + "</td>"+
+                "   <td class='m3'>" +  qwe.address + "</td>"+
+                "   <td class='m3'>" + qwe.phone + "</td>"+
+                "   <td class='m3'>" +  qwe.rcode + "</td>"+
+                "</tr>";
+                $("#comTable tbody").empty();  
+                $("#com1Table tbody").empty();  
+                $("#comTable tbody").append(sHtml);
+                $("#com1Table tbody").append(sHtml);
+
+                });
+                });
             $.get('getwagons/'+itag,function(data){
 
                 $.each(data,function(i,qwe){
@@ -569,7 +622,7 @@
                
          });
                 });
-                $.get('getcontract/'+itag,function(data){
+                $.get('getcontracts/'+itag,function(data){
 
                 $.each(data,function(i,qwe){
                 var sHtml = "<tr>" +
@@ -581,7 +634,7 @@
                 "   <td class='m1'> <a class='btn btn-xs btn-info' data-toggle='modal' data-target='#conModal' data-id=" + qwe.contract_id + " tag=" + qwe.contract_id + " onclick='conEdit(" + qwe.contract_id + ")'><i class='fa fa-edit'></i></a> </td>" +
       
                 "</tr>";
-
+             
                 $("#contractTable tbody").append(sHtml);
 
 

@@ -50,7 +50,7 @@ Route::get('/getcompany/{id?}',function($id = 0){
     $dt=DB::table('company_info')->where('company_id','=',$id)->get();
     return $dt;
 });
-Route::get('/getcontract/{id?}',function($id = 0){
+Route::get('/getcontracts/{id?}',function($id = 0){
     $dt=DB::table('V_CONTRACT_INFO')->where('company_id','=',$id)->get();
     return $dt;
 });
