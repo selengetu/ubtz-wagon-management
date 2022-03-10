@@ -267,8 +267,8 @@
                     <input type="hidden"  id="hid" name="hid">
                     <input type="hidden"  id="flg" name="flg">
                     @csrf
-                    <button type="button" onclick="$('#nav-contract-tab').trigger('click')" class="btn btn-primary comwagon">Гэрээ</button>
-                    <button type="button" onclick="$('#nav-vagon-tab').trigger('click')" class="btn btn-primary comwagon">Вагон</button>
+                    <button type="button" onclick="$('#nav-contract-tab').trigger('click')" class="btn btn-info comwagon">Гэрээ</button>
+                    <button type="button" onclick="$('#nav-vagon-tab').trigger('click')" class="btn btn-info comwagon">Вагон</button>
                     <button type="submit" class="btn btn-primary">Хадгалах</button>
                 </div>
                 </form>
@@ -579,10 +579,11 @@
             var itag=$('#hid').val(); 
             $( ".menuli1" ).removeClass("disabled disabledTab");
             $( "#comButton" ).hide();
-            $("#contractTable tbody").empty();   
-            $("#vagonsTable tbody").empty();   
             $('#cid1').val(itag); 
             $('#cid2').val(itag); 
+            $("#contractTable tbody").empty();   
+            $("#vagonsTable tbody").empty();   
+            $('#comModal').modal('hide');
             $.get('getcompany/'+itag,function(data){
 
                 $.each(data,function(i,qwe){
