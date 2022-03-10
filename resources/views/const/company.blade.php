@@ -62,7 +62,7 @@
                         <tr >
                             <td>{{$no}}</td>
                             <td >{{$item->company_code}}</td>
-                            <td class="comwagon" onclick="$('#nav-contract-tab').trigger('click')" tag="{{$item->company_id}}"><b>{{$item->company_name}}</b></td>
+                            <td><b>{{$item->company_name}}</b></td>
                             <td>{{$item->nmark}}</td>
                             <td>@if($item->is_owner == 1) Тийм @else Үгүй @endif</td>
                             <td>@if($item->is_arrender == 1) Тийм @else Үгүй @endif</td>
@@ -267,6 +267,8 @@
                     <input type="hidden"  id="hid" name="hid">
                     <input type="hidden"  id="flg" name="flg">
                     @csrf
+                    <button type="button" onclick="$('#nav-contract-tab').trigger('click')" class="btn btn-primary comwagon">Гэрээ</button>
+                    <button type="button" onclick="$('#nav-vagon-tab').trigger('click')" class="btn btn-primary comwagon">Вагон</button>
                     <button type="submit" class="btn btn-primary">Хадгалах</button>
                 </div>
                 </form>
@@ -574,7 +576,7 @@
         }
     }
     $('.comwagon').on('click',function(){
-            var itag=$(this).attr('tag');
+            var itag=$('#hid').val(); 
             $( ".menuli1" ).removeClass("disabled disabledTab");
             $( "#comButton" ).hide();
             $("#contractTable tbody").empty();   
