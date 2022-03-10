@@ -191,13 +191,19 @@
                 <form method="POST" id="formSub" action={{ route('saveCom') }}>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-6">
+                    <div class="col-2">
+                            <div class="form-group">
+                                <label for="jobname">Төмөр замын код</label>
+                                <input type="text" class="form-control" id="rcode" name="rcode" placeholder="Төмөр замын код">
+                            </div>
+                        </div>
+                        <div class="col-2">
                             <div class="form-group">
                                 <label for="jobname">Компаний код</label>
                                 <input type="text" class="form-control" id="company_code" name="company_code" placeholder="Компаний код">
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-8">
                             <div class="form-group">
                                 <label for="jobname">Компаний нэр</label>
                                 <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Компаний нэр">
@@ -205,62 +211,57 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="jobname">Марк</label>
+                                <label for="jobname">Үсгэн тэмдэг</label>
                                 <input type="text" class="form-control" id="nmark" name="nmark" placeholder="Марк">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-5">
                             <div class="form-group">
-                                <label for="jobname">Эзэмшигч эсэх</label>
-                                <select class="form-control" name="is_arrender" id="is_arrender" >
-                              
-                                        <option value="1">Тийм</option>
-                                        <option value="2">Үгүй</option>
-                            </select>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="jobname">Түрээслэгч эсэх</label>
-                                <select class="form-control" name="is_arrender" id="is_arrender" >
-                              
-                                        <option value="1">Тийм</option>
-                                        <option value="2">Үгүй</option>
-                            </select>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="jobname">Тэмдэглэл</label>
+                                <label for="jobname">Компани ангилал</label>
                                 <input type="text" class="form-control" id="note" name="note" placeholder="Тэмдэглэл">
                             </div>
                         </div>
+                       
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Вагон түрээсээр эзэмшигч</label>
+                                <select class="form-control" name="is_arrender" id="is_arrender" >
+                              
+                                        <option value="1">Тийм</option>
+                                        <option value="2">Үгүй</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="jobname">Хувийн вагон эзэмшигч</label>
+                                <select class="form-control" name="is_arrender" id="is_arrender" >
+                              
+                                        <option value="1">Тийм</option>
+                                        <option value="2">Үгүй</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <label for="jobname">Салбар замын нэр</label>
+                                <input type="text" class="form-control" id="subway_name" name="subway_name" placeholder="Замын нэр">
+                            </div>
+                        </div>
+                        
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="jobname">Хаяг</label>
                                 <input type="text" class="form-control" id="address" name="address" placeholder="Хаяг">
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for="jobname">Утас</label>
                                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Утас">
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="jobname">Төмөр замын код</label>
-                                <input type="text" class="form-control" id="rcode" name="rcode" placeholder="Төмөр замын код">
-                            </div>
-                        </div>
-                        
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="jobname">Замын нэр</label>
-                                <input type="text" class="form-control" id="subway_name" name="subway_name" placeholder="Замын нэр">
-                            </div>
-                        </div>
-                       
+
                 </div>
                 <div class="modal-footer">
                     <input type="hidden"  id="hid" name="hid">
