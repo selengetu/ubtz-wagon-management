@@ -556,7 +556,7 @@
                 $('#floor').val(data[0].floor);
                 $('#hid2').val(data[0].wagid);
                 $('#flg2').val(1);
-                document.getElementById("modallabel").innerHTML=">Вагоны мэдээллийг засварлах";
+                document.getElementById("modallabel").innerHTML="Вагоны мэдээллийг засварлах";
             });
         } else {
             $('#wagno').val('');
@@ -583,7 +583,6 @@
             $('#cid2').val(itag); 
             $("#contractTable tbody").empty();   
             $("#vagonsTable tbody").empty();   
-            $('#comModal').modal('hide');
             $.get('getcompany/'+itag,function(data){
 
                 $.each(data,function(i,qwe){
@@ -622,7 +621,9 @@
         "</tr>";
 
         $("#vagonsTable tbody").append(sHtml);
-               
+        $('#vagonsTable').each(function () {
+            $(this).trigger('repaginate');
+            });    
                
          });
                 });
