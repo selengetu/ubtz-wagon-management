@@ -231,7 +231,7 @@
                                 <select class="form-control" name="is_owner" id="is_owner" >
                               
                                         <option value="1">Тийм</option>
-                                        <option value="2">Үгүй</option>
+                                        <option value="0">Үгүй</option>
                             </select>
                             </div>
                         </div>
@@ -241,7 +241,7 @@
                                 <select class="form-control" name="is_arrender" id="is_arrender" >
                               
                                         <option value="1">Тийм</option>
-                                        <option value="2">Үгүй</option>
+                                        <option value="0">Үгүй</option>
                             </select>
                             </div>
                         </div>
@@ -270,8 +270,8 @@
                     <input type="hidden"  id="hid" name="hid">
                     <input type="hidden"  id="flg" name="flg">
                     @csrf
-                    <button type="button" onclick="$('#nav-contract-tab').trigger('click')" class="btn btn-info comwagon">Гэрээ</button>
-                    <button type="button" onclick="$('#nav-vagon-tab').trigger('click')" class="btn btn-info comwagon">Вагон</button>
+                    <button type="button"  class="btn btn-info comwagon" id="a1">Гэрээ</button>
+                    <button type="button"  class="btn btn-info comwagon" id="b1">Вагон</button>
                     <button type="submit" class="btn btn-primary">Хадгалах</button>
                 </div>
                 </form>
@@ -489,8 +489,8 @@
                 $('#company_code').val(data[0].company_code).trigger('change');
                 $('#company_name').val(data[0].company_name);
                 $('#nmark').val(data[0].nmark);
-                $('#is_owner').val(data[0].is_owner);
-                $('#is_arrender').val(data[0].is_arrender);
+                $('#is_owner').val(data[0].is_owner).trigger('change');
+                $('#is_arrender').val(data[0].is_arrender).trigger('change');
                 $('#note').val(data[0].note);
                 $('#phone').val(data[0].phone);
                 $('#address').val(data[0].address);
@@ -580,10 +580,19 @@
     }
     $('.comwagon').on('click',function(){
             var itag=$('#hid').val(); 
+            var i=$(this).attr('id');
             $( ".menuli1" ).removeClass("disabled disabledTab");
+            if(i == "a1"){
+                $('#nav-contract-tab').trigger('click')
+            }
+            else{
+                $('#nav-vagon-tab').trigger('click')
+            }
+            
             $( "#comButton" ).hide();
             $('#cid1').val(itag); 
             $('#cid2').val(itag); 
+            $('#comModal').modal('hide');
             $("#contractTable tbody").empty();   
             $("#vagonsTable tbody").empty();   
             $("#comTable tbody").empty();  
@@ -622,7 +631,7 @@
         "   <td class='m1'>" + qwe.wagno + "</td>" +
         "   <td class='m2'>" + qwe.wagtype + "</td>" +
         "   <td class='m3'>" + qwe.rcode + "</td>" +
-         "   <td class='m3'>" + qwe.category_name + "</td>"+
+        "   <td class='m3'>" + qwe.category_name + "</td>"+
        "   <td class='m3'>" +  qwe.waggroup + "</td>"+
        "   <td class='m3'>" + qwe.axes + "</td>"+
        "   <td class='m3'>" +  qwe.weight + "</td>"+

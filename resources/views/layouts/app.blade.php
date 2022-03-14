@@ -92,7 +92,7 @@
                        
                             <ul class="nav nav-treeview">
                             <li class="nav-item has-treeview"  style="margin-left:1rem;">
-                                    <a   href="{{ route('company') }}" class="nav-link">
+                                    <a   href="{{ route('home') }}" class="nav-link">
                                     <i class="fa fa-university left"></i>
                                         <p >
                                         Компани бүртгэл
@@ -100,7 +100,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item has-treeview"  style="margin-left:1rem;">
-                                    <a href="{{ route('home') }}" class="nav-link">
+                                    <a href="#" class="nav-link">
                                     <i class="fa fa-subway left"></i>
                                         <p >
                                         Вагон бүртгэл

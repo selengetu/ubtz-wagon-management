@@ -31,7 +31,7 @@ Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class, 's
 Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\WagonController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\CompanyController::class, 'index'])->name('home');
 
 Route::post('/passw',  [App\Http\Controllers\HomeController::class,'passw'])->name('passw');
 Route::get('/wagon/delete/{id}', [App\Http\Controllers\WagonController::class,'delete']);
