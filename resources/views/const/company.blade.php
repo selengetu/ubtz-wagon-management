@@ -90,6 +90,7 @@
             <div class="table-responsive">
                 <br>
                 <button class="btn btn-default btn-xs right"  onclick="wagonEdit()" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button>
+                <div id="waggroups" class="row"></div><br>
                 <table class="table table-bordered table-striped" id="comTable">
                         <thead >
                         <th>Компаний код</th>
@@ -99,13 +100,14 @@
                             <th>Хаяг</th>
                             <th>Утас</th>
                             <th>Төмөр замын код</th>
-                            <th></th>
                         </thead>
                         <tbody id="tbody">
                       
                         </tbody>
                     </table>
                     <br>
+                  
+
                 <table class="table table-bordered table-striped" id="vagonsTable">
                         <thead >
 
@@ -136,6 +138,7 @@
                 <br>
                 <button class="btn btn-default btn-xs right"  onclick="conEdit()" data-toggle="modal" data-target="#conModal"><i class="fa fa-plus"></i> Гэрээ нэмэх</button>
                 <br>
+            
                 <table class="table table-bordered table-striped" id="com1Table">
                         <thead >
                           
@@ -583,6 +586,9 @@
             $('#cid2').val(itag); 
             $("#contractTable tbody").empty();   
             $("#vagonsTable tbody").empty();   
+            $("#comTable tbody").empty();  
+            $("#com1Table tbody").empty(); 
+            $("#waggroups").empty();
             $.get('getcompany/'+itag,function(data){
 
                 $.each(data,function(i,qwe){
@@ -595,12 +601,19 @@
                 "   <td class='m3'>" + qwe.phone + "</td>"+
                 "   <td class='m3'>" +  qwe.rcode + "</td>"+
                 "</tr>";
-                $("#comTable tbody").empty();  
-                $("#com1Table tbody").empty();  
                 $("#comTable tbody").append(sHtml);
                 $("#com1Table tbody").append(sHtml);
 
                 });
+                });
+                $.get('getwagoncount/'+itag,function(data){
+                    
+                $.each(data,function(i,qwe){
+                var sHtml = "<div class='col-md-1'><b>"+ qwe.waggroup +"-"+ qwe.cnt + "&nbsp;&nbsp;</b></div>" 
+                $("#waggroups").append(sHtml);
+                });
+               
+              
                 });
             $.get('getwagons/'+itag,function(data){
 

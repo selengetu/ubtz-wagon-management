@@ -59,6 +59,11 @@ Route::get('/getwagons/{id?}',function($id = 0){
     return $dt;
 });
 
+Route::get('/getwagoncount/{id?}',function($id = 0){
+    $dt=DB::table('V_WAGON_COUNT')->where('company_id','=',$id)->get();
+    return $dt;
+});
+
 Route::get('/type', [App\Http\Controllers\WagonController::class, 'type'])->name('type');
 
 Route::get('/railway', [App\Http\Controllers\WagonController::class, 'railway'])->name('railway');
