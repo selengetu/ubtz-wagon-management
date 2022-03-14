@@ -89,7 +89,7 @@
             <div class="tab-pane fade" id="nav-vagon" role="tabpanel" aria-labelledby="nav-vagon-tab">
             <div class="table-responsive">
                 <br>
-                <button class="btn btn-default btn-xs right"  onclick="wagonEdit()" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button>
+                <button class="btn btn-default btn-xs right"  onclick="wagonEdit()" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button><br>
                 <div id="waggroups" class="row"></div><br>
                 <table class="table table-bordered table-striped" id="comTable">
                         <thead >
