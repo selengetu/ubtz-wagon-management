@@ -90,7 +90,6 @@
             <div class="table-responsive">
                 <br>
                 <button class="btn btn-default btn-xs right"  onclick="wagonEdit()" data-toggle="modal" data-target="#wagonModal"><i class="fa fa-plus"></i> Вагон нэмэх</button><br>
-                <div id="waggroups" class="row"></div><br>
                 <table class="table table-bordered table-striped" id="comTable">
                         <thead >
                         <th>Компаний код</th>
@@ -107,7 +106,21 @@
                     </table>
                     <br>
                   
-
+              <div class="row">
+              <div class="col-md-2">
+                <table class="table table-bordered table-striped" id="waggroups">
+                        <thead >
+                            <th>Төрөл</th>
+                            <th>Нийт</th>
+                        </thead>
+                        <tbody id="tbody">
+                        <?php $no = 1; ?>
+                      
+                        
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="col-md-10">
                 <table class="table table-bordered table-striped" id="vagonsTable">
                         <thead >
 
@@ -130,6 +143,8 @@
                         
                         </tbody>
                     </table>
+                    </div>
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-contract" role="tabpanel" aria-labelledby="nav-contract-tab">
@@ -597,7 +612,7 @@
             $("#vagonsTable tbody").empty();   
             $("#comTable tbody").empty();  
             $("#com1Table tbody").empty(); 
-            $("#waggroups").empty();
+            $("#waggroups tbody").empty();
             $.get('getcompany/'+itag,function(data){
 
                 $.each(data,function(i,qwe){
@@ -618,7 +633,9 @@
                 $.get('getwagoncount/'+itag,function(data){
                     
                 $.each(data,function(i,qwe){
-                var sHtml = "<div class='col-md-1'><b>"+ qwe.waggroup +"-"+ qwe.cnt + "&nbsp;&nbsp;</b></div>" 
+                var sHtml = "<tr>" +
+                "   <td class='m1'>" + qwe.waggroup + "</td>" +
+                "   <td class='m2'>" + qwe.cnt + "</td></tr>" 
                 $("#waggroups").append(sHtml);
                 });
                
