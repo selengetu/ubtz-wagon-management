@@ -228,7 +228,7 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="jobname">Вагон түрээсээр эзэмшигч</label>
-                                <select class="form-control" name="is_arrender" id="is_arrender" >
+                                <select class="form-control" name="is_owner" id="is_owner" >
                               
                                         <option value="1">Тийм</option>
                                         <option value="2">Үгүй</option>
@@ -659,6 +659,9 @@
                 });
                 });
         });
-
+        
+        $('#nav-home-tab').on('click',function(){
+            $("#comButton" ).show();
+        });
 </script>
 @stop
